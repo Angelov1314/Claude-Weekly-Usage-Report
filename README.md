@@ -1,88 +1,42 @@
-# claude-skills
+# Claude Weekly Usage Report
 
-![Skills](https://img.shields.io/badge/skills-1-blue?style=flat-square)
-![Platform](https://img.shields.io/badge/platform-Claude%20Code-blueviolet?style=flat-square)
-![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
+A Claude Code skill that generates a weekly project report with 5 sections — Ghibli-style art panels, project overview, tech stack + API links, deployment links, and token/model usage — sent as one Gmail email.
 
-Jerry's personal library of [Claude Code](https://claude.ai/code) skills — reusable instruction sets that extend Claude with custom slash commands.
+## What It Does
 
----
+The `project-viz-report` skill scans your active projects, generates Studio Ghibli-inspired watercolor art panels via the Nano Banana API, collects token usage stats, and compiles everything into a single HTML email with 5 sections:
 
-## What is a Skill?
+| # | Section | Content |
+|---|---------|---------|
+| 1 | Project Visualization | Ghibli art panels (3 groups of 5) hosted on GitHub |
+| 2 | Project Overview | Name, date, core features table |
+| 3 | Tech Stack & APIs | Tech stack, API services, GitHub repos |
+| 4 | Deployment Links | Platform badges + live/repo URLs |
+| 5 | Token Usage | Totals, per-model breakdown, daily bar chart |
 
-A **skill** is a `SKILL.md` file that Claude Code loads as a set of instructions, making it available as a `/slash-command` inside any Claude Code session.
+## Installation
 
-Skills live locally at:
+Copy the `project-viz-report` directory into your Claude Code skills directory:
 
-```
-~/.claude/skills/<skill-name>/SKILL.md
-```
-
-When you type `/skill-name` in Claude Code, Claude reads the corresponding `SKILL.md` and executes the instructions within it.
-
----
-
-## Available Skills
-
-| Skill | Invoke | Description |
-|-------|--------|-------------|
-| `project-viz-report` | `/project-viz-report` | Weekly 5-section project report: Ghibli art panels, project overview, tech stack, deploy links, token usage — sent as one Gmail |
-
----
-
-## How to Use a Skill
-
-1. Copy the skill folder into your local skills directory:
-
-   ```bash
-   cp -r project-viz-report ~/.claude/skills/
-   ```
-
-2. Invoke it in Claude Code:
-
-   ```
-   /project-viz-report
-   ```
-
-Claude will load the `SKILL.md` and run the skill automatically.
-
----
-
-## Skill Structure
-
-Each skill follows this layout:
-
-```
-<skill-name>/
-└── SKILL.md          # frontmatter + markdown instructions
+```bash
+mkdir -p ~/.claude/skills/project-viz-report
+cp project-viz-report/skill.md ~/.claude/skills/project-viz-report/skill.md
 ```
 
-`SKILL.md` format:
-
-```markdown
----
-name: skill-name
-description: One-line description shown in skill picker
----
-
-# Skill Title
-
-Step-by-step instructions Claude follows when the skill is invoked.
-```
-
-The YAML frontmatter sets the skill's `name` and `description`. Everything below the `---` divider is the instruction body.
-
----
-
-## Repository Layout
+## Usage
 
 ```
-claude-skills/
-├── README.md
-└── project-viz-report/
-    └── SKILL.md
+/project-viz-report
 ```
 
----
+Claude will scan project directories, generate art panels, collect token usage, and draft a Gmail email with all 5 sections.
 
-*Built for personal use with [Claude Code](https://claude.ai/code).*
+## Requirements
+
+- Gmail MCP (for drafting/sending the email)
+- Nano Banana API key (for Ghibli art generation)
+- `token-usage` skill (for section 5 data)
+
+## License
+
+MIT
