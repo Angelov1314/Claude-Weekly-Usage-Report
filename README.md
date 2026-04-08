@@ -1,5 +1,7 @@
 # Claude Weekly Usage Report
 
+![Demo](demo.png)
+
 A Claude Code skill that generates a weekly project report with 5 sections — Ghibli-style art panels, project overview, tech stack + API links, deployment links, and token/model usage — sent as one Gmail email.
 
 ## What It Does
